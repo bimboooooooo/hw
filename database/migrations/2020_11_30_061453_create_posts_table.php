@@ -6,24 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('content');
+            $table->string('slug');
+            $table->foreignIdFor(\App\Models\User::class,'author');
             $table->timestamps();
+            $table->softDeletes('deleted at');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('posts');
