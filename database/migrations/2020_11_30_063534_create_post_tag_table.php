@@ -11,8 +11,14 @@ class CreatePostTagTable extends Migration
     {
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Post::class);
-            $table->foreignIdFor(\App\Models\Tag::class);
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
+            $table->foreignId('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->cascadeOnDelete();
         });
     }
 

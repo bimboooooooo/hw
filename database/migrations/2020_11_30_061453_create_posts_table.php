@@ -14,7 +14,10 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('slug');
-            $table->foreignIdFor(\App\Models\User::class,'author');
+            $table->foreignId('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes('deleted at');
         });
