@@ -18,12 +18,22 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
+        @foreach($posts as $post)
+            <tr>
+                <th scope="row">{{$post->id}}</th>
+                <td>{{ $post->title }}</td>
+                <td>{{ $post->slug }}</td>
+                <td>{{ $post->athor }}</td>
+                <td>{{ $post->category }}</td>
+                <td>{{ $post->tag }}</td>
+                <td>
+                    <form class="btn btn-danger" action="" method="post">
+{{--                    <button class="btn btn-danger">Delete</button>--}}
+                    </form>
+                </td>
+                <td></td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 @endsection
