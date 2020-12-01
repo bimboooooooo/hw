@@ -10,14 +10,8 @@ class CategorySeeder extends Seeder
 
     public function run()
     {
-        Category::factory()
-            ->count(50)
-            ->has(Image::factory()
-                ->count(1)
-                ->create(
-                    /*['imageable_type' => "App\Models\Category", 'imageable_id'=>Category::class->id]*/
-                )
-            )
-            ->create();
+        Category::factory(50)->create()->each(function ($category){
+            Image::factory()->create(['imageable_type' => "App\Models\Category", 'imageable_id'=>$category->id]);
+        });
     }
 }

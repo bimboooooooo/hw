@@ -14,8 +14,9 @@ class Post extends Model
     protected $guarded = [];
 
     // Mutators
-    public function setSlugAttribute()
+    public function setTitleAttribute($value)
     {
+        $this->attributes['title'] = $value;
         $uniqueNum = substr(Carbon::now()->getPreciseTimestamp(4),-7);
         $this->attributes['slug'] = Str::slug($this->attributes['title'])."-".$uniqueNum;
     }
