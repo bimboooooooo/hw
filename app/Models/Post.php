@@ -18,7 +18,7 @@ class Post extends Model
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
-        $uniqueNum = substr(Carbon::now()->getPreciseTimestamp(4), -7);
+        $uniqueNum = substr(Carbon::now()->getPreciseTimestamp(9)%10000000000, -7);
         $this->attributes['slug'] = Str::slug($this->attributes['title']) . "-" . $uniqueNum;
     }
 
