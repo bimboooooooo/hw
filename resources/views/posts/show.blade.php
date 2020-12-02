@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container col-md-6 card" style="width: 18rem;">
-        <img class="card-img-top" src="{{$posts->image}}" alt="{{ $posts->image->alt }}">
+    <div class="container card col-3">
+        <img class="card-img mt-3" src="{{ $final_path }}" alt="">
         <div class="card-body">
-            <h5 class="card-title">{{ $posts->title }}</h5>
-            <p class="card-text">{{ $posts->content }}</p>
+            <h4 class="card-title">{{ $post->title }}</h4>
+            <p class="card-text">{{ $post->content }}</p>
+        </div>
+        <div class="mb-3">
+            <form class="d-inline" action="{{route('posts.destroy',$post->id,true)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="confirm('Are you sure?')" class="btn btn-block btn-outline-danger">
+                    Delete
+                </button>
+            </form>
         </div>
     </div>
 @endsection

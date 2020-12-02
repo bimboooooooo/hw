@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Psy\Util\Str;
 
 class PostController extends Controller
 {
@@ -26,8 +28,10 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $posts = Post::with([]);
-        return view('posts.show', compact('posts'));
+        dd($post->image()->get());
+        $path =$post->image()->get()->all()[0]->path;
+        $final_path = url(Storage::url(substr($path, 31)));
+        return view('posts.show', compact('post',"final_path"));
     }
 
     public function edit(Post $post)
