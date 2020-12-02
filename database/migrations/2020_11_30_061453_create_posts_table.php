@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
                 ->on('users')
                 ->cascadeOnDelete();
             $table->timestamps();
-            $table->softDeletes('deleted_at')->nullable();
+            $table->softDeletes('deleted_at');
         });
     }
 

@@ -10,16 +10,18 @@ use Carbon\Carbon;
 
 class Post extends Model
 {
-    use HasFactory,softDeletes;
+    use HasFactory, softDeletes;
+
     protected $guarded = [];
 
     // Mutators
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
-        $uniqueNum = substr(Carbon::now()->getPreciseTimestamp(4),-7);
-        $this->attributes['slug'] = Str::slug($this->attributes['title'])."-".$uniqueNum;
+        $uniqueNum = substr(Carbon::now()->getPreciseTimestamp(4), -7);
+        $this->attributes['slug'] = Str::slug($this->attributes['title']) . "-" . $uniqueNum;
     }
+
     // Relations
     public function author()
     {
@@ -38,6 +40,6 @@ class Post extends Model
 
     public function image()
     {
-        return $this->morphOne(Image::class,'imageable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 }

@@ -10,8 +10,8 @@ class PostController extends Controller
 
     public function index()
     {
-        dd($posts = Post::all());
-//        return view('posts.index',compact('posts'));
+        $posts = Post::paginate(10);
+        return view('posts.index', compact('posts'));
     }
 
     public function create()
@@ -26,7 +26,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        //
+        $posts = Post::with([]);
+        return view('posts.show', compact('posts'));
     }
 
     public function edit(Post $post)
@@ -41,6 +42,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->action('App\Http\Controllers\PostController@index');
     }
 }
