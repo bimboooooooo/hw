@@ -16,6 +16,13 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <div class="d-inline-flex justify-content-center mb-2">
+                    <form action="{{route("posts.index")}}">
+                    <button class="btn btn-lg btn-block btn-outline-success" type="submit">
+                    {{__('See Posts!')}}
+                    </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

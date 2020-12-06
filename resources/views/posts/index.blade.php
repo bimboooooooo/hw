@@ -24,23 +24,23 @@
                     <th class="align-middle" scope="row">{{$post->id }}</th>
                     <td class="align-middle">{{ $post->title }}</td>
                     <td class="align-middle">{{ $post->slug }}</td>
-                    <td class="align-middle">{{ $post->Author->name }}</td>
+                    <td class="align-middle">{{ $post->author->name }}</td>
 
                     <td class="align-middle">
-                        @foreach($post->categories as $category)
+                        @foreach($post->categories as $category){{--TODO use laravel collection methods instead of foreach--}}
                             <div class="badge badge-info">
                                 {{ $category->title }}
                             </div>
                         @endforeach
                     </td>
                     <td class="align-middle">
-                        @foreach($post->tags as $tag)
+                        @foreach($post->tags as $tag){{--TODO use laravel collection methods instead of foreach--}}
                             <div class="badge badge-warning">
-                            {{ $tag->title }}
+                                {{ $tag->title }}
                             </div>
                         @endforeach
                     </td>
-                    <td>
+                    <td width="200px">
                         <form class="d-inline" action="{{route('posts.show',$post->id,true)}}" method="GET">
                             @csrf
                             <button type="submit" class="btn btn-outline-success">

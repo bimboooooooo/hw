@@ -15,7 +15,7 @@ class ImageFactory extends Factory
         return [
             'title' => $this->faker->sentence(rand(1, 4)),
             'alt'   => $this->faker->sentence(rand(1, 4)),
-            'path'  => $this->faker->image(storage_path().'/app/public/images'),
+            'path'  => $this->faker->image(storage_path().'/app/public/images'),//TODO images
         ];
     }
 }

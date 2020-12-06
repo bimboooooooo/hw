@@ -12,36 +12,16 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::paginate(10);
+
+        $posts = Post::with(['tags','image','categories','author'])->get();
         return view('posts.index', compact('posts'));
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
     }
 
     public function show(Post $post)
     {
-        dd($post->image()->get());
-        $path =$post->image()->get()->all()[0]->path;
-        $final_path = url(Storage::url(substr($path, 31)));
+        $path =$post->image->path;
+        $final_path = url(Storage::url(substr($path, 31))); // Todo fixx
         return view('posts.show', compact('post',"final_path"));
-    }
-
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    public function update(Request $request, Post $post)
-    {
-        //
     }
 
     public function destroy(Post $post)
