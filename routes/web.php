@@ -18,4 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('newUser','phoneNumberController@index')->name('newUser');
+Route::post('newUser', 'phoneNumberController@index')->name('newUser');
+Route::get('login', function () {
+    return view('auth.home');
+})->name('login');
+Route::get('register', function () {
+    return view('auth.home');
+})->name('register');
