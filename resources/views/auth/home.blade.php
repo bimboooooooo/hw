@@ -9,12 +9,16 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('newUser') }}">
                             @csrf
-
+                            @isset($expr) <p class="alert alert-danger">{!! $expr !!}</p> @endisset
                             <div class="form-group row">
-                                <label for="phoneNumber" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number:') }}</label>
+                                <label for="phoneNumber"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Phone Number:') }}</label>
                                 <div class="col-md-6">
-                                    <input id="phoneNumber" type="tel" class="form-control {{--@error('email') is-invalid @enderror--}}" name="phoneNumber" required autocomplete="phone" autofocus>
-                                    @error('email')
+                                    <input id="phoneNumber" type="tel"
+                                           class="form-control @error('phoneNumber') is-invalid @enderror"
+                                           name="phoneNumber" required autocomplete="phone"
+                                           value="{{ old('phoneNumber') }}" autofocus>
+                                    @error('phoneNumber')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

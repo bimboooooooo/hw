@@ -18,7 +18,7 @@
                 </div>
                 <div class="d-inline-flex justify-content-center mb-2">
                     <form action="{{route("posts.index")}}">
-                    <button class="btn btn-lg btn-block btn-outline-success" type="submit">
+                    <button class="btn btn-block btn-outline-success" type="submit">
                     {{__('See Posts!')}}
                     </button>
                     </form>
